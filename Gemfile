@@ -1,11 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
+ruby '1.9.3' # Ruby version
+gem 'rails', '3.2.13' #Rails version
 
 
 # Gems used only for assets and not required
@@ -13,26 +9,30 @@ gem 'sqlite3'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
-gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'jquery-rails' #jQuery
+gem 'devise' # User authentication
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+group :development, :test do
+  gem 'sqlite3'
+  gem 'rspec-rails', '~>2.4' # framework for unit testing
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :test do
+  gem 'database_cleaner' # reset your db to a pristine state during testing
+end
 
-# Deploy with Capistrano
-# gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'
+group :production do 
+  gem 'thin'  # heroku web server
+  gem 'pg'  # postgres db gem
+  
+  # MemCachier, Dalli for cache
+  gem 'memcachier'
+  gem 'dalli'
+
+end
